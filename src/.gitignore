@@ -1,1 +1,7 @@
-/bin
+# Binaries
+bin/
+out/
+target/
+
+# Eclipse stuff
+.settings/
