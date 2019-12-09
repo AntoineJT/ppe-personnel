@@ -50,7 +50,7 @@ class TestEmploye {
 	void testMailGetter()
 	{
 		Employe employe = createKarlo(createLigueTirArc());
-		assertEquals(employe.getMail(), "jeaneude.karlo@karlo.com");
+		assertEquals("jeaneude.karlo@karlo.com", employe.getMail());
 	}
 	
 	@Test
@@ -59,13 +59,13 @@ class TestEmploye {
 		Employe employe = new Employe(createLigueTirArc(), "Abandonné", "Déchet", "poubelle@trash.org", "ptdr");
 		
 		employe.setMail("hello@world.org");
-		assertEquals(employe.getMail(), "hello@world.org");
+		assertEquals("hello@world.org", employe.getMail());
 		
 		employe.setNom("Vilo");
-		assertEquals(employe.getNom(), "Vilo");
+		assertEquals("Vilo", employe.getNom());
 		
 		employe.setPrenom("Lucien");
-		assertEquals(employe.getPrenom(), "Lucien");
+		assertEquals("Lucien", employe.getPrenom());
 		
 		employe.setPassword("MotDePasse");
 		assertTrue(employe.checkPassword("MotDePasse"));
@@ -77,8 +77,8 @@ class TestEmploye {
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
 		Employe employe = createKarlo(createLigueTirArc());
 		
-		assertEquals(employe.toString(), "Karlo Jean-Eude jeaneude.karlo@karlo.com (Tir à l'arc)");
-		assertEquals(root.toString(), root.getNom() + " " + root.getPrenom() + " " + root.getMail() + " (super-utilisateur)");
+		assertEquals("Karlo Jean-Eude jeaneude.karlo@karlo.com (Tir à l'arc)", employe.toString());
+		assertEquals(root.getNom() + " " + root.getPrenom() + " " + root.getMail() + " (super-utilisateur)", root.toString());
 	}
 	
 	@Test
@@ -97,7 +97,7 @@ class TestEmploye {
 		admin.remove();
 		assertFalse(ligue.getEmployes().contains(admin));
 		
-		assertEquals(ligue.getAdministrateur(), root);
+		assertEquals(root, ligue.getAdministrateur());
 		assertThrows(ImpossibleDeSupprimerRoot.class, () -> { root.remove(); });
 	}
 	
