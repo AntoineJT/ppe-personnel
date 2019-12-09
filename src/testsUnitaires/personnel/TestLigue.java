@@ -1,5 +1,6 @@
 package personnel;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -48,5 +49,13 @@ class TestLigue
 		Ligue ligue = createLigueFlechette();
 		ligue.setNom("Koala");
 		assertEquals("Koala", ligue.getNom());
+	}
+	
+	@Test
+	void testRemove()
+	{
+		Ligue ligue = createLigueFlechette();
+		ligue.remove();
+		assertFalse(GestionPersonnel.getGestionPersonnel().getLigues().contains(ligue));
 	}
 }

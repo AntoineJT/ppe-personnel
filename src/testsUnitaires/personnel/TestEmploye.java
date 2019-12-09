@@ -86,19 +86,18 @@ class TestEmploye {
 	{
 		Ligue ligue = createLigueTirArc();
 		Employe employe = new Employe(ligue, "Paskal", "Lucien", "letesteurunitaire@codeur.org", "TesterCEstDouterCorrigerCEstAbdiquer");
+		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
+		Employe admin = ligue.addEmploye("Charles", "Guy", "guycharles@cookie.org", "VivLéKouki");
 		
 		employe.remove();
 		assertFalse(ligue.getEmployes().contains(employe));
-		
-		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
-		Employe admin = ligue.addEmploye("Charles", "Guy", "guycharles@cookie.org", "VivLéKouki");
 		
 		ligue.setAdministrateur(admin);
 		admin.remove();
 		assertFalse(ligue.getEmployes().contains(admin));
 		
 		assertEquals(root, ligue.getAdministrateur());
-		assertThrows(ImpossibleDeSupprimerRoot.class, () -> { root.remove(); });
+		assertThrows(ImpossibleDeSupprimerRoot.class, () -> root.remove());
 	}
 	
 	@Test
