@@ -6,3 +6,4 @@ target/
 # Eclipse stuff
 .settings/
 
+/bin_tests/
