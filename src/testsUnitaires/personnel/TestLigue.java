@@ -6,41 +6,47 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 class TestLigue 
-{
-	private static Ligue ligue = new Ligue("Fléchettes");
-	private static Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
+{	
+	private Ligue createLigueFlechette()
+	{
+		return new Ligue("Fléchettes");
+	}
+	
+	private Employe createBouchard(Ligue ligue)
+	{
+		return ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty");
+	}
 	
 	@Test
-	void createLigue() 
+	void testCreateLigue() 
 	{
-		assertEquals("Fléchettes", ligue.getNom());
+		assertEquals("Fléchettes", createLigueFlechette().getNom());
 	}
 
 	@Test
-	void addEmploye() 
+	void testAddEmploye() 
 	{ 
-		assertEquals(employe, ligue.getEmployes().first());
+		Ligue ligue = createLigueFlechette();
+		assertEquals(createBouchard(ligue), ligue.getEmployes().first());
 	}
 	
 	@Test
-	void setAdministrateur()
+	void testSetAdministrateur()
 	{
-		// Employe employe = new Employe(ligueFlechettes, "Karlo", "Jean-Eude", "jeaneude.karlo@karlo.com", "KarloIsTheBest");
+		Ligue ligue = createLigueFlechette();
+		Employe employe = createBouchard(ligue);
+		
 		ligue.setAdministrateur(employe);
 		assertEquals(ligue.getAdministrateur(), employe);
 		
 		assertThrows(DroitsInsuffisants.class, () -> new Ligue("Escrime").setAdministrateur(employe));
 	}
 	
-	// TODO Fix it!
 	@Test
-	void setNom()
+	void testSetNom()
 	{
-		Ligue ligueEscrime = new Ligue("Escrime");
-		ligueEscrime.setNom("Koala");
-		assertEquals("Koala", ligueEscrime.getNom());
+		Ligue ligue = createLigueFlechette();
+		ligue.setNom("Koala");
+		assertEquals("Koala", ligue.getNom());
 	}
-	
-	
-	
 }
