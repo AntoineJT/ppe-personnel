@@ -1,3 +1,3 @@
 # 🗃️ Modèle Conceptuel de Données (MCD)
 
-![MCD](./MCD.JPG)
+![MCD](./MCD.Png)
