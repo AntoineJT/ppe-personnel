@@ -1,0 +1,6 @@
+
+# Looping backup files
+*.bak
+
+# IntelliJ stuff
+.idea/
