@@ -1,8 +1,6 @@
 package personnel;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,9 +34,18 @@ class TestLigue
 	{
 		Ligue ligue = createLigueFlechette();
 		Employe employe = createBouchard(ligue);
+		Employe employe2 = ligue.addEmploye("Toto", "Toto", "fzarf@test.com", "azerty1234");
+		
+		assertEquals(GestionPersonnel.getGestionPersonnel().getRoot(), ligue.getAdministrateur());
 		
 		ligue.setAdministrateur(employe);
 		assertEquals(ligue.getAdministrateur(), employe);
+		assertTrue(employe.estAdmin(ligue));
+		
+		ligue.setAdministrateur(employe2);
+        assertEquals(ligue.getAdministrateur(), employe2);
+        assertTrue(employe2.estAdmin(ligue));
+        assertFalse(employe.estAdmin(ligue));
 		
 		assertThrows(DroitsInsuffisants.class, () -> new Ligue("Escrime").setAdministrateur(employe));
 	}

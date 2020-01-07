@@ -107,7 +107,7 @@ class TestEmploye {
 		Employe employe = createKarlo(ligue);
 		Employe employe2 = ligue.addEmploye("Javell", "Francis", "francisj@wanadoo.fr", "S3cur3");
 		
-		assertTrue(employe.compareTo(employe) == 0);
-		assertFalse(employe.compareTo(employe2) == 0);
+		assertEquals(0, employe.compareTo(employe));
+		assertNotEquals(0, employe.compareTo(employe2));
 	}
 }

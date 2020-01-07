@@ -23,22 +23,6 @@ class TestGestionPersonnel {
 		
 		ligue.setAdministrateur(employe);
 		assertEquals(ligue, personnel.getLigue(employe));
-		
-/*
-		try {
-			Field serializedFile = Serialization.class.getDeclaredField("FILE_NAME");
-			serializedFile.setAccessible(true);
-			String initialValue = (String) serializedFile.get(serializedFile);
-			serializedFile.set(serializedFile, "THISFILEDOESNTEXISTS");
-			
-			assertTrue(GestionPersonnel.getGestionPersonnel().getLigues().isEmpty());
-			
-			serializedFile.set(serializedFile, initialValue);
-		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-			fail();
-			// e.printStackTrace();
-		}
-*/	
 	}
 	
 	@Test
@@ -51,7 +35,6 @@ class TestGestionPersonnel {
 			assertTrue(gestionPersonnel.getLigues().isEmpty());
 		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			fail("The specified constructor can't be found!");
-			// e.printStackTrace();
 		}
 	}
 	
