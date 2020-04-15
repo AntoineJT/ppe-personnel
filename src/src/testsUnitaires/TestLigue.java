@@ -1,14 +1,21 @@
-package personnel;
+package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import personnel.DroitsInsuffisants;
+import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.Ligue;
+
 class TestLigue 
 {	
+    private static GestionPersonnel personnel = TestUtils.personnel;
+    
 	private Ligue createLigueFlechette()
 	{
-		return new Ligue("Fléchettes");
+		return TestUtils.createLigue("Fléchettes");
 	}
 	
 	private Employe createBouchard(Ligue ligue)
@@ -47,7 +54,7 @@ class TestLigue
         assertTrue(employe2.estAdmin(ligue));
         assertFalse(employe.estAdmin(ligue));
 		
-		assertThrows(DroitsInsuffisants.class, () -> new Ligue("Escrime").setAdministrateur(employe));
+		assertThrows(DroitsInsuffisants.class, () -> TestUtils.createLigue("Escrime").setAdministrateur(employe));
 	}
 	
 	@Test
@@ -63,6 +70,6 @@ class TestLigue
 	{
 		Ligue ligue = createLigueFlechette();
 		ligue.remove();
-		assertFalse(GestionPersonnel.getGestionPersonnel().getLigues().contains(ligue));
+		assertFalse(personnel.getLigues().contains(ligue));
 	}
 }

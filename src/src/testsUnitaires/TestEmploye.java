@@ -1,13 +1,18 @@
-package personnel;
+package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.ImpossibleDeSupprimerRoot;
+import personnel.Ligue;
+
 class TestEmploye {
 	private Ligue createLigueTirArc() 
 	{
-		return new Ligue("Tir à l'arc");
+        return TestUtils.createLigue("Tir à l'arc");
 	}
 	
 	private Employe createKarlo(Ligue ligue)
@@ -29,7 +34,7 @@ class TestEmploye {
 	{
 		Ligue ligue = createLigueTirArc();
 		Employe employe = createKarlo(ligue);
-		Ligue ligueEscrime = new Ligue("Escrime");
+		Ligue ligueEscrime = TestUtils.createLigue("Escrime");
 		
 		ligue.setAdministrateur(employe);
 		assertTrue(employe.estAdmin(ligue));
@@ -56,7 +61,7 @@ class TestEmploye {
 	@Test
 	void testSetters()
 	{
-		Employe employe = new Employe(createLigueTirArc(), "Abandonné", "Déchet", "poubelle@trash.org", "ptdr");
+	    Employe employe = createLigueTirArc().addEmploye("Abandonné", "Déchet", "poubelle@trash.org", "ptdr");
 		
 		employe.setMail("hello@world.org");
 		assertEquals("hello@world.org", employe.getMail());
@@ -85,7 +90,7 @@ class TestEmploye {
 	void testRemove()
 	{
 		Ligue ligue = createLigueTirArc();
-		Employe employe = new Employe(ligue, "Paskal", "Lucien", "letesteurunitaire@codeur.org", "TesterCEstDouterCorrigerCEstAbdiquer");
+		Employe employe = ligue.addEmploye("Paskal", "Lucien", "letesteurunitaire@codeur.org", "TesterCEstDouterCorrigerCEstAbdiquer");
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
 		Employe admin = ligue.addEmploye("Charles", "Guy", "guycharles@cookie.org", "VivLéKouki");
 		

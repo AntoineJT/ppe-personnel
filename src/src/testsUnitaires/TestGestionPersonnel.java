@@ -1,22 +1,21 @@
-package personnel;
+package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 import org.junit.jupiter.api.Test;
 
+import personnel.Employe;
+import personnel.GestionPersonnel;
+import personnel.Ligue;
+
 class TestGestionPersonnel {
-	private GestionPersonnel personnel = GestionPersonnel.getGestionPersonnel();
-	
+    private static GestionPersonnel personnel = TestUtils.personnel;
+    
 	@Test
 	void testGetLigue()
 	{
-		Ligue ligue = new Ligue("Batteur de saumon en Alaska");
+		Ligue ligue = TestUtils.createLigue("Batteur de saumon en Alaska");
 		Employe employe = ligue.addEmploye("Grolask", "Jean-Charles", "jc.grolask@alaska.us", "jellybelly");
 		
 		assertNull(personnel.getLigue(employe));
@@ -25,6 +24,7 @@ class TestGestionPersonnel {
 		assertEquals(ligue, personnel.getLigue(employe));
 	}
 	
+	/*
 	@Test
 	void testConstructor()
 	{
@@ -38,7 +38,6 @@ class TestGestionPersonnel {
 		}
 	}
 	
-	/*
 	@Test
 	void testSauvegarder()
 	{
