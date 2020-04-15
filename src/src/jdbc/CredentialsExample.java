@@ -2,17 +2,17 @@ package jdbc;
 
 public class CredentialsExample 
 {
-	private static String driver ="mysql",
-			driverClassName = "com.mysql.cj.jdbc.Driver",
-			host = "localhost", 
-			port ="3306",
-			database ="",
-			user = "",
-			password = "";
+	private static String driver = "mysql";
+	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
+	private static String host = "localhost";
+	private static String port = "3306";
+	private static String database = "";
+	private static String user = "";
+	private static String password = "";
 	
 	static String getUrl() 
 	{
-		return "jdbc:" + driver + "://" + host + "/" + database ;
+		return "jdbc:" + driver + "://" + host + ":" + port + "/" + database ;
 	}
 	
 	static String getDriverClassName()
