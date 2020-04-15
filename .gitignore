@@ -1,6 +1,14 @@
 
+/GestionPersonnel.srz
+
 # Looping backup files
 *.bak
 
 # IntelliJ stuff
 .idea/
+
+# Binaries
+bin/
+out/
+target/
+bin_tests/
