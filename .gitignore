@@ -1,14 +1,16 @@
-
-/GestionPersonnel.srz
+GestionPersonnel.srz
 
 # Looping backup files
 *.bak
 
+# Gradle stuff
+.gradle/
+build/
+
+# Eclipse stuff
+.settings/
+.classpath
+.project
+
 # IntelliJ stuff
 .idea/
-
-# Binaries
-bin/
-out/
-target/
-bin_tests/

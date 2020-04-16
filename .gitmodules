@@ -1,8 +1,0 @@
-[submodule "CommandLine"]
-	path = src/lib/CommandLine
-	url = https://github.com/AntoineJT/CommandLine.git
-	branch = improvements
-[submodule "src/lib/CommandLine"]
-	path = src/lib/CommandLine
-	url = https://github.com/AntoineJT/CommandLine.git
-	branch = improvements

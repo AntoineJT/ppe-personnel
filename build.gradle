@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+	maven {
+		url 'https://jitpack.io'
+	}
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'commandLine.PersonnelConsole'
+	}
+}
+
+shadowJar {
+	baseName = rootProject.name
+}
+
+dependencies {
+	implementation 'com.github.antoinejt:commandline:jitpack-SNAPSHOT'
+	implementation 'mysql:mysql-connector-java:8.0.19'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+task removeUselessJar(type: Delete) {
+	delete "build/libs/${rootProject.name}.jar"
+}
+
+build.dependsOn 'shadowJar'
+build.finalizedBy removeUselessJar
