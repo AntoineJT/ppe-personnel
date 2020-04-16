@@ -33,22 +33,19 @@ public class LigueConsole
 
 	private Option afficherLigues()
 	{
-		return new Option("Afficher les ligues", "l", () -> {System.out.println(gestionPersonnel.getLigues());});
+		return new Option("Afficher les ligues", "l", () -> System.out.println(gestionPersonnel.getLigues()));
 	}
 
 	private Option afficher(final Ligue ligue)
 	{
-		return new Option("Afficher la ligue", "l", 
-				() -> 
-				{
-					System.out.println(ligue);
-					System.out.println("administrée par " + ligue.getAdministrateur());
-				}
+		return new Option("Afficher la ligue", "l", () -> System.out.println(
+				ligue + "\n" +
+				"administrée par " + ligue.getAdministrateur())
 		);
 	}
 	private Option afficherEmployes(final Ligue ligue)
 	{
-		return new Option("Afficher les employes", "l", () -> {System.out.println(ligue.getEmployes());});
+		return new Option("Afficher les employes", "l", () -> System.out.println(ligue.getEmployes()));
 	}
 
 	private Option ajouterLigue()
@@ -81,7 +78,7 @@ public class LigueConsole
 	private Option changerNom(final Ligue ligue)
 	{
 		return new Option("Renommer", "r", 
-				() -> {ligue.setNom(getString("Nouveau nom : "));});
+				() -> ligue.setNom(getString("Nouveau nom : ")));
 	}
 
 	private List<Ligue> selectionnerLigue()
@@ -95,12 +92,11 @@ public class LigueConsole
 	private Option ajouterEmploye(final Ligue ligue)
 	{
 		return new Option("ajouter un employé", "a",
-				() -> 
-				{
+				() ->
 					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "), getString("mail : "), 
-						getString("password : "));
-				}
+						getString("prenom : "),
+						getString("mail : "),
+						getString("password : "))
 		);
 	}
 	
@@ -119,10 +115,10 @@ public class LigueConsole
 	{
 		return new List<>("Supprimer un employé", "s", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {element.remove();}
+				(index, element) -> element.remove()
 				);
 	}
-	
+
 	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
 		return null;
@@ -132,13 +128,12 @@ public class LigueConsole
 	{
 		return new List<>("Modifier un employé", "e", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {employeConsole.editerEmploye(element);}
-				);
+				(index, element) -> employeConsole.editerEmploye(element)
+		);
 	}
 	
 	private Option supprimer(Ligue ligue)
 	{
 		return new Option("Supprimer", "d", () -> {ligue.remove();});
 	}
-	
 }
