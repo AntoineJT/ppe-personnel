@@ -12,7 +12,6 @@ import java.util.TreeSet;
  * l'administrateur de la ligue jusqu'à ce qu'un administrateur 
  * lui ait été affecté avec la fonction {@link #setAdministrateur}.
  */
-
 public class Ligue implements Serializable, Comparable<Ligue>
 {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Crée une ligue.
 	 * @param nom le nom de la ligue.
 	 */
-	
 	Ligue(GestionPersonnel gestionPersonnel, String nom) throws SauvegardeImpossible
 	{
 		this(gestionPersonnel, -1, nom);
@@ -46,7 +44,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Retourne le nom de la ligue.
 	 * @return le nom de la ligue.
 	 */
-
 	public String getNom()
 	{
 		return nom;
@@ -56,7 +53,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Change le nom.
 	 * @param nom le nouveau nom de la ligue.
 	 */
-
 	public void setNom(String nom)
 	{
 		this.nom = nom;
@@ -66,7 +62,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Retourne l'administrateur de la ligue.
 	 * @return l'administrateur de la ligue.
 	 */
-	
 	public Employe getAdministrateur()
 	{
 		return administrateur;
@@ -79,7 +74,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * administrateur.
 	 * @param administrateur le nouvel administrateur de la ligue.
 	 */
-	
 	public void setAdministrateur(Employe administrateur)
 	{
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
@@ -92,7 +86,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Retourne les employés de la ligue.
 	 * @return les employés de la ligue dans l'ordre alphabétique.
 	 */
-	
 	public SortedSet<Employe> getEmployes()
 	{
 		return Collections.unmodifiableSortedSet(employes);
@@ -107,7 +100,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @param password le password de l'employé.
 	 * @return l'employé créé. 
 	 */
-
 	public Employe addEmploye(String nom, String prenom, String mail, String password)
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password);
@@ -124,12 +116,10 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Supprime la ligue, entraîne la suppression de tous les employés
 	 * de la ligue.
 	 */
-	
 	public void remove()
 	{
 		GestionPersonnel.getGestionPersonnel().remove(this);
 	}
-	
 
 	@Override
 	public int compareTo(Ligue autre)

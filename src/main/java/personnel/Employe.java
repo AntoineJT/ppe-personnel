@@ -9,7 +9,6 @@ import java.io.Serializable;
  * Il est impossible d'instancier directement un employé, 
  * il faut passer la méthode {@link Ligue#addEmploye addEmploye}.
  */
-
 public class Employe implements Serializable, Comparable<Employe>
 {
 	private static final long serialVersionUID = 4795721718037994734L;
@@ -35,7 +34,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param ligue la ligue pour laquelle on souhaite vérifier si this 
 	 * est l'admininstrateur.
 	 */
-	
 	public boolean estAdmin(Ligue ligue)
 	{
 		return ligue.getAdministrateur() == this;
@@ -45,7 +43,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Retourne vrai ssi l'employé est le root.
 	 * @return vrai ssi l'employé est le root.
 	 */
-	
 	public boolean estRoot()
 	{
 		return GestionPersonnel.getGestionPersonnel().getRoot() == this;
@@ -55,7 +52,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Retourne le nom de l'employé.
 	 * @return le nom de l'employé. 
 	 */
-	
 	public String getNom()
 	{
 		return nom;
@@ -65,7 +61,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Change le nom de l'employé.
 	 * @param nom le nouveau nom.
 	 */
-	
 	public void setNom(String nom)
 	{
 		this.nom = nom;
@@ -75,7 +70,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Retourne le prénom de l'employé.
 	 * @return le prénom de l'employé.
 	 */
-	
 	public String getPrenom()
 	{
 		return prenom;
@@ -85,7 +79,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Change le prénom de l'employé.
 	 * @param prenom le nouveau prénom de l'employé. 
 	 */
-
 	public void setPrenom(String prenom)
 	{
 		this.prenom = prenom;
@@ -95,7 +88,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Retourne le mail de l'employé.
 	 * @return le mail de l'employé.
 	 */
-	
 	public String getMail()
 	{
 		return mail;
@@ -105,7 +97,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Change le mail de l'employé.
 	 * @param mail le nouveau mail de l'employé.
 	 */
-
 	public void setMail(String mail)
 	{
 		this.mail = mail;
@@ -118,7 +109,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * de l'employé.
 	 * @param password le password auquel comparer celui de l'employé.
 	 */
-	
 	public boolean checkPassword(String password)
 	{
 		return this.password.equals(password);
@@ -128,17 +118,15 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Change le password de l'employé.
 	 * @param password le nouveau password de l'employé. 
 	 */
-	
 	public void setPassword(String password)
 	{
-		this.password= password;
+		this.password = password;
 	}
 
 	/**
 	 * Retourne la ligue à laquelle l'employé est affecté.
 	 * @return la ligue à laquelle l'employé est affecté.
 	 */
-	
 	public Ligue getLigue()
 	{
 		return ligue;
@@ -148,7 +136,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Supprime l'employé. Si celui-ci est un administrateur, le root
 	 * récupère les droits d'administration sur sa ligue.
 	 */
-	
 	public void remove()
 	{
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();

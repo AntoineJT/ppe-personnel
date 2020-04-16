@@ -14,7 +14,6 @@ import java.util.TreeSet;
  * d'une exécution précédente, c'est l'objet sauvegardé qui est
  * retourné.
  */
-
 public class GestionPersonnel implements Serializable
 {
 	private static final long serialVersionUID = -105283113987886425L;
@@ -107,7 +106,6 @@ public class GestionPersonnel implements Serializable
 	 * Retourne le root (super-utilisateur).
 	 * @return le root.
 	 */
-	
 	public Employe getRoot()
 	{
 		return root;
