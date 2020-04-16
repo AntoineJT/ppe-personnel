@@ -12,7 +12,10 @@ import java.io.Serializable;
 public class Employe implements Serializable, Comparable<Employe>
 {
 	private static final long serialVersionUID = 4795721718037994734L;
-	private String nom, prenom, password, mail;
+	private String nom;
+	private String prenom;
+	private String password;
+	private String mail;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
 	
