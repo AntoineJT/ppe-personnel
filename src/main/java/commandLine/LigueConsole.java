@@ -83,10 +83,10 @@ public class LigueConsole
 
 	private List<Ligue> selectionnerLigue()
 	{
-		return new List<Ligue>("Sélectionner une ligue", "e", 
+		return new List<>("Sélectionner une ligue", "e",
 				() -> new ArrayList<>(gestionPersonnel.getLigues()),
-				(element) -> editerLigue(element)
-				);
+				this::editerLigue
+		);
 	}
 	
 	private Option ajouterEmploye(final Ligue ligue)
@@ -134,6 +134,6 @@ public class LigueConsole
 	
 	private Option supprimer(Ligue ligue)
 	{
-		return new Option("Supprimer", "d", () -> {ligue.remove();});
+		return new Option("Supprimer", "d", ligue::remove);
 	}
 }
