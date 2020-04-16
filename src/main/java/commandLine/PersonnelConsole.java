@@ -7,8 +7,8 @@ import static commandLineMenus.rendering.examples.util.InOut.*;
 public class PersonnelConsole
 {
 	private GestionPersonnel gestionPersonnel;
-	LigueConsole ligueConsole;
-	EmployeConsole employeConsole;
+	private LigueConsole ligueConsole;
+	private EmployeConsole employeConsole;
 	
 	public PersonnelConsole(GestionPersonnel gestionPersonnel)
 	{

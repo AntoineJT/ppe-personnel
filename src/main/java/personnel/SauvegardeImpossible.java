@@ -7,7 +7,7 @@ package personnel;
 public class SauvegardeImpossible extends Exception
 {
 	private static final long serialVersionUID = 6651919630441855001L;	
-	Exception exception;
+	private final Exception exception;
 	
 	public SauvegardeImpossible(Exception exception)
 	{
