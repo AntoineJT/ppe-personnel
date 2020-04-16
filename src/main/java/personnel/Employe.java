@@ -15,9 +15,11 @@ public class Employe implements Serializable, Comparable<Employe>
 	private static final long serialVersionUID = 4795721718037994734L;
 	private String nom, prenom, password, mail;
 	private Ligue ligue;
+	private GestionPersonnel gestionPersonnel;
 	
-	Employe(Ligue ligue, String nom, String prenom, String mail, String password)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
 	{
+		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;

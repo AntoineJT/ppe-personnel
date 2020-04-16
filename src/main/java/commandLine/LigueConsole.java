@@ -53,7 +53,17 @@ public class LigueConsole
 
 	private Option ajouterLigue()
 	{
-		return new Option("Ajouter une ligue", "a", () -> {new Ligue (getString("nom : "));});
+		return new Option("Ajouter une ligue", "a", () -> 
+		{
+			try
+			{
+				gestionPersonnel.addLigue(getString("nom : "));
+			}
+			catch(SauvegardeImpossible exception)
+			{
+				System.err.println("Impossible de sauvegarder cette ligue");
+			}
+		});
 	}
 	
 	private Menu editerLigue(Ligue ligue)

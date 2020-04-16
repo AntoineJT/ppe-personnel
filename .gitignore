@@ -1,6 +1,16 @@
+GestionPersonnel.srz
 
 # Looping backup files
 *.bak
+
+# Gradle stuff
+.gradle/
+build/
+
+# Eclipse stuff
+.settings/
+.classpath
+.project
 
 # IntelliJ stuff
 .idea/
