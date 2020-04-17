@@ -102,7 +102,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 */
 	public Employe addEmploye(String nom, String prenom, String mail, String password)
 	{
-		Employe employe = new Employe(this, nom, prenom, mail, password);
+		Employe employe = new Employe(nom, prenom, mail, password, this);
 		employes.add(employe);
 		return employe;
 	}
