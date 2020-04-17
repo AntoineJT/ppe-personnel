@@ -5,15 +5,15 @@ CREATE TABLE EMPLOYE
    , prenom VARCHAR(50) NOT NULL
    , mail VARCHAR(70) UNIQUE NOT NULL
    , mdp VARCHAR(50) NOT NULL -- TODO Si j'ai le temps hasher ça correctement
-   , estRoot BIT(1)
+   , estRoot BIT(1) DEFAULT 0
    , CONSTRAINT PK_USER PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
 -- Cette table évite les références circulaires
 CREATE TABLE TRAVAILLER
 (
-   employe INT UNSIGNED NOT NULL REFERENCES EMPLOYE(id)
-   , ligue INT UNSIGNED NOT NULL REFERENCES LIGUE(id)
+   employe INT UNSIGNED NOT NULL
+   , ligue INT UNSIGNED NOT NULL
    , CONSTRAINT PK_WORK PRIMARY KEY(employe, ligue)
 ) ENGINE=InnoDB;
 
@@ -21,6 +21,6 @@ CREATE TABLE LIGUE
 (
    id INT UNSIGNED AUTO_INCREMENT NOT NULL
    , nomLigue VARCHAR(50) UNIQUE NOT NULL
-   , `admin` INT UNSIGNED REFERENCES TRAVAILLER(employe)
+   , `admin` INT UNSIGNED
    , CONSTRAINT PK_LIGUE PRIMARY KEY(id)
 ) ENGINE=InnoDB;
