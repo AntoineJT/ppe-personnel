@@ -17,11 +17,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	private String password;
 	private String mail;
 	private Ligue ligue;
-	private GestionPersonnel gestionPersonnel;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	Employe(Ligue ligue, String nom, String prenom, String mail, String password)
 	{
-		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
@@ -48,7 +46,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	 */
 	public boolean estRoot()
 	{
-		return gestionPersonnel.getRoot() == this;
+		return GestionPersonnel.getGestionPersonnel().getRoot() == this;
 	}
 	
 	/**
@@ -141,7 +139,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	 */
 	public void remove()
 	{
-		Employe root = gestionPersonnel.getRoot();
+		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
 		if (this != root)
 		{
 			if (estAdmin(getLigue()))
