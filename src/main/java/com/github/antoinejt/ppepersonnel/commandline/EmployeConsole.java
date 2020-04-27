@@ -33,6 +33,7 @@ public class EmployeConsole
 		menu.add(changerPassword(employe));
 		menu.add(changerDateArrivee(employe));
 		menu.add(changerDateDepart(employe));
+		menu.add(supprimer(employe));
 		menu.addBack("q");
 		return menu;
 	}
@@ -89,5 +90,10 @@ public class EmployeConsole
 			printDateFormat();
 			employe.setDateDepart(getDate("de départ"));
 		});
+	}
+
+	private Option supprimer(final Employe employe)
+	{
+		return new Option("Supprimer", "s", employe::remove);
 	}
 }
