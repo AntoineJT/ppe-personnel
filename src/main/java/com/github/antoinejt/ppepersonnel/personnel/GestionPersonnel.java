@@ -1,5 +1,6 @@
 package com.github.antoinejt.ppepersonnel.personnel;
 
+import com.github.antoinejt.ppepersonnel.Config;
 import com.github.antoinejt.ppepersonnel.jdbc.JDBC;
 import com.github.antoinejt.ppepersonnel.serialisation.Serialization;
 
@@ -23,12 +24,8 @@ public class GestionPersonnel implements Serializable
 	private static GestionPersonnel gestionPersonnel = null;
 	private SortedSet<Ligue> ligues;
 	private Employe root = new Employe("root", "", "", "toor", null);
-	// enum-like
-	public static final int SERIALIZATION = 1;
-	public static final int JDBC = 2;
 
-	public static final int TYPE_PASSERELLE = SERIALIZATION;
-	private static Passerelle passerelle = TYPE_PASSERELLE == JDBC ? new JDBC() : new Serialization();
+	private static Passerelle passerelle = Config.TYPE_PASSERELLE.toString().equals("JDBC") ? new JDBC() : new Serialization();
 	
 	/**
 	 * Retourne l'unique instance de cette classe.

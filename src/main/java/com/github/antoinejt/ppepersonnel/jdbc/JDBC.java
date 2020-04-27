@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.github.antoinejt.ppepersonnel.Config;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
 import com.github.antoinejt.ppepersonnel.personnel.Passerelle;
@@ -20,8 +21,8 @@ public class JDBC implements Passerelle
 	{
 		try
 		{
-			Class.forName(Credentials.getDriverClassName());
-			connection = DriverManager.getConnection(Credentials.getUrl(), Credentials.getUser(), Credentials.getPassword());
+			Class.forName(Config.DB_DRIVER_CLASSNAME.toString());
+			connection = DriverManager.getConnection(getUrl(), Config.DB_USER.toString(), Config.DB_PASSWORD.toString());
 		}
 		catch (ClassNotFoundException e)
 		{
@@ -31,6 +32,10 @@ public class JDBC implements Passerelle
 		{
 			System.out.println(e);
 		}
+	}
+
+	private static String getUrl() {
+		return String.format("jdbc:%s://%s:%s/%s", Config.DB_DRIVER, Config.DB_HOST, Config.DB_PORT, Config.DB_NAME);
 	}
 	
 	@Override

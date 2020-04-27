@@ -1,0 +1,11 @@
+type_passerelle = "SERIALIZATION" # can be SERIALIZATION or JDBC
+
+# useful only if JDBC is selected
+[database]
+driver = "mysql" # default: mysql
+driver_classname = "com.mysql.cj.jdbc.Driver" # default: com.mysql.cj.jdbc.Driver
+host = "localhost" # default: localhost
+port = "3306" # default: 3306
+name = "personnel" # default: personnel
+user = "root" # default: root
+password = "" # default:
