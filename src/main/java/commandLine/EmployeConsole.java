@@ -8,6 +8,10 @@ import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class EmployeConsole 
 {
 	private Option afficher(final Employe employe)
@@ -27,6 +31,8 @@ public class EmployeConsole
 		menu.add(changerPrenom(employe));
 		menu.add(changerMail(employe));
 		menu.add(changerPassword(employe));
+		menu.add(changerDateArrivee(employe));
+		menu.add(changerDateDepart(employe));
 		menu.addBack("q");
 		return menu;
 	}
@@ -49,5 +55,39 @@ public class EmployeConsole
 	private Option changerPassword(final Employe employe)
 	{
 		return new Option("Changer le password", "x", () -> employe.setPassword(getString("Nouveau password : ")));
+	}
+
+	private void printDateFormat()
+	{
+		System.out.println("La date est au format JJ/MM/YYYY");
+	}
+
+	private Date getDate(String type)
+	{
+		Date date = null;
+		do {
+			try {
+				date = new SimpleDateFormat("dd/MM/yyyy").parse(getString(String.format("Date %s au format JJ/MM/YYYY : ", type)));
+			} catch (ParseException e) {
+				System.err.println("Date invalide !");
+			}
+		} while (date == null);
+		return date;
+	}
+
+	private Option changerDateArrivee(final Employe employe)
+	{
+		return new Option("Changer la date d'arrivée", "a", () -> {
+			printDateFormat();
+			employe.setDateArrivee(getDate("d'arrivée"));
+		});
+	}
+
+	private Option changerDateDepart(final Employe employe)
+	{
+		return new Option("Changer la date de départ", "d", () -> {
+			printDateFormat();
+			employe.setDateDepart(getDate("de départ"));
+		});
 	}
 }

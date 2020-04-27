@@ -1,6 +1,8 @@
 package personnel;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -17,14 +19,23 @@ public class Employe implements Serializable, Comparable<Employe>
 	private String password;
 	private String mail;
 	private Ligue ligue;
-	
-	Employe(String nom, String prenom, String mail, String password, Ligue ligue)
+	private Date arrivee;
+	private Date depart;
+
+	Employe(String nom, String prenom, String mail, String password, Date arrivee, Ligue ligue)
 	{
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
 		this.mail = mail;
+		this.arrivee = arrivee;
+		this.depart = null;
 		this.ligue = ligue;
+	}
+
+	Employe(String nom, String prenom, String mail, String password, Ligue ligue)
+	{
+		new Employe(nom, prenom, mail, password, null, ligue);
 	}
 	
 	/**
@@ -104,6 +115,38 @@ public class Employe implements Serializable, Comparable<Employe>
 	}
 
 	/**
+	 * Retourne la date d'arrivée de l'employé.
+	 * @return la date d'arrivée de l'employé.
+	 */
+	public Date getDateArrivee() {
+		return arrivee;
+	}
+
+	/**
+	 * Change la date d'arrivée de l'employé.
+	 * @param arrivee la nouvelle date d'arrivée de l'employé.
+	 */
+	public void setDateArrivee(Date arrivee) {
+		this.arrivee = arrivee;
+	}
+
+	/**
+	 * Retourne la date de départ de l'employé.
+	 * @return la date de départ de l'employé.
+	 */
+	public Date getDateDepart() {
+		return depart;
+	}
+
+	/**
+	 * Change la date de départ de l'employé.
+	 * @param depart la nouvelle date de départ de l'employé.
+	 */
+	public void setDateDepart(Date depart) {
+		this.depart = depart;
+	}
+
+	/**
 	 * Retourne vrai ssi le password passé en paramètre est bien celui
 	 * de l'employé.
 	 * @return vrai ssi le password passé en paramètre est bien celui
@@ -163,7 +206,12 @@ public class Employe implements Serializable, Comparable<Employe>
 	public String toString()
 	{
 		String res = nom + " " + prenom + " " + mail + " (";
-		res += estRoot() ? "super-utilisateur" : ligue.toString();
-		return res + ")";
+		res += estRoot() ? "super-utilisateur" : ligue.toString() + ") ";
+		// TODO Mettre l'instance de SDF utilisant ce pattern en tant que constante quelque part
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		if (arrivee != null) {
+			res += formatter.format(arrivee) + " - " + ((depart != null) ? formatter.format(depart) : "?");
+		}
+		return res;
 	}
 }
