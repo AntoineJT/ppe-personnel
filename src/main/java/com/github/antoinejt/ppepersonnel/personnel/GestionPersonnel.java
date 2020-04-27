@@ -1,6 +1,6 @@
 package com.github.antoinejt.ppepersonnel.personnel;
 
-import com.github.antoinejt.ppepersonnel.Config;
+import com.github.antoinejt.ppepersonnel.config.Config;
 import com.github.antoinejt.ppepersonnel.jdbc.JDBC;
 import com.github.antoinejt.ppepersonnel.serialisation.Serialization;
 

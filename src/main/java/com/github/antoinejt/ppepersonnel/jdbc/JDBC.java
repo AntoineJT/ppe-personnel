@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.github.antoinejt.ppepersonnel.Config;
+import com.github.antoinejt.ppepersonnel.config.Config;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
 import com.github.antoinejt.ppepersonnel.personnel.Passerelle;
