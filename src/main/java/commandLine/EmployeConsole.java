@@ -17,7 +17,7 @@ public class EmployeConsole
 
 	ListOption<Employe> editerEmploye()
 	{
-		return (employe) -> editerEmploye(employe);
+		return this::editerEmploye;
 	}
 
 	Option editerEmploye(Employe employe) {
