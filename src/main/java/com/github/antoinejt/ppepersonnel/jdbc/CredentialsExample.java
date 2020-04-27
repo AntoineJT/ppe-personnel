@@ -1,4 +1,4 @@
-package jdbc;
+package com.github.antoinejt.ppepersonnel.jdbc;
 
 public class CredentialsExample 
 {

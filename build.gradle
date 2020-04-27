@@ -3,6 +3,7 @@ plugins {
 	id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
+group 'com.github.antoinejt'
 sourceCompatibility = 1.8
 
 repositories {
@@ -14,7 +15,7 @@ repositories {
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'commandLine.PersonnelConsole'
+		attributes 'Main-Class': "com.github.antoinejt.ppepersonnel.commandline.PersonnelConsole"
 	}
 }
 

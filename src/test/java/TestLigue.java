@@ -2,10 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import personnel.DroitsInsuffisants;
-import personnel.Employe;
-import personnel.GestionPersonnel;
-import personnel.Ligue;
+import com.github.antoinejt.ppepersonnel.personnel.DroitsInsuffisants;
+import com.github.antoinejt.ppepersonnel.personnel.Employe;
+import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
+import com.github.antoinejt.ppepersonnel.personnel.Ligue;
 
 class TestLigue 
 {	

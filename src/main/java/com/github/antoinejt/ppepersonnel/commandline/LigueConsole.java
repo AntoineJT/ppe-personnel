@@ -1,14 +1,16 @@
-package commandLine;
+package com.github.antoinejt.ppepersonnel.commandline;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
 import java.util.ArrayList;
 
+import com.github.antoinejt.ppepersonnel.personnel.Employe;
+import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
+import com.github.antoinejt.ppepersonnel.personnel.Ligue;
+import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
-
-import personnel.*;
 
 public class LigueConsole 
 {

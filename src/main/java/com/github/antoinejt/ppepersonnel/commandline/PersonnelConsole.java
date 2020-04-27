@@ -1,6 +1,7 @@
-package commandLine;
+package com.github.antoinejt.ppepersonnel.commandline;
 
-import personnel.*;
+import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
+import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 import commandLineMenus.*;
 import static commandLineMenus.rendering.examples.util.InOut.*;
 
@@ -73,7 +74,7 @@ public class PersonnelConsole
 	
 	public static void main(String[] args)
 	{
-		PersonnelConsole personnelConsole = 
+		PersonnelConsole personnelConsole =
 				new PersonnelConsole(GestionPersonnel.getGestionPersonnel());
 		if (personnelConsole.verifiePassword())
 			personnelConsole.start();

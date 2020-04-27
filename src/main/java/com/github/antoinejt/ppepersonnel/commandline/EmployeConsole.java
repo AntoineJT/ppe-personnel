@@ -1,4 +1,4 @@
-package commandLine;
+package com.github.antoinejt.ppepersonnel.commandline;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
@@ -6,7 +6,7 @@ import static commandLineMenus.rendering.examples.util.InOut.getString;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
-import personnel.Employe;
+import com.github.antoinejt.ppepersonnel.personnel.Employe;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,4 +1,4 @@
-package serialisation;
+package com.github.antoinejt.ppepersonnel.serialisation;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import personnel.GestionPersonnel;
-import personnel.Ligue;
-import personnel.SauvegardeImpossible;
+import com.github.antoinejt.ppepersonnel.personnel.Passerelle;
+import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
+import com.github.antoinejt.ppepersonnel.personnel.Ligue;
+import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 
-public class Serialization implements personnel.Passerelle
+public class Serialization implements Passerelle
 {
 	private static final String FILE_NAME = "GestionPersonnel.srz";
 

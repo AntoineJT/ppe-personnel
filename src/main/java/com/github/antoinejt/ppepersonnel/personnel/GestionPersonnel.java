@@ -1,4 +1,7 @@
-package personnel;
+package com.github.antoinejt.ppepersonnel.personnel;
+
+import com.github.antoinejt.ppepersonnel.jdbc.JDBC;
+import com.github.antoinejt.ppepersonnel.serialisation.Serialization;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -25,7 +28,7 @@ public class GestionPersonnel implements Serializable
 	public static final int JDBC = 2;
 
 	public static final int TYPE_PASSERELLE = SERIALIZATION;
-	private static Passerelle passerelle = TYPE_PASSERELLE == JDBC ? new jdbc.JDBC() : new serialisation.Serialization();
+	private static Passerelle passerelle = TYPE_PASSERELLE == JDBC ? new JDBC() : new Serialization();
 	
 	/**
 	 * Retourne l'unique instance de cette classe.

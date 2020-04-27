@@ -1,4 +1,4 @@
-package personnel;
+package com.github.antoinejt.ppepersonnel.personnel;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

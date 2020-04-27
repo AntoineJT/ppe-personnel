@@ -1,4 +1,4 @@
-package personnel;
+package com.github.antoinejt.ppepersonnel.personnel;
 
 public interface Passerelle 
 {

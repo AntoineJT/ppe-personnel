@@ -1,4 +1,4 @@
-package jdbc;
+package com.github.antoinejt.ppepersonnel.jdbc;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import personnel.*;
+import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
+import com.github.antoinejt.ppepersonnel.personnel.Ligue;
+import com.github.antoinejt.ppepersonnel.personnel.Passerelle;
+import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 
-public class JDBC implements Passerelle 
+public class JDBC implements Passerelle
 {
 	Connection connection;
 
@@ -31,7 +34,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public GestionPersonnel getGestionPersonnel() 
+	public GestionPersonnel getGestionPersonnel()
 	{
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try (
@@ -49,7 +52,7 @@ public class JDBC implements Passerelle
 	}
 
 	@Override
-	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel) throws SauvegardeImpossible 
+	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel) throws SauvegardeImpossible
 	{
 		close();
 	}
@@ -68,7 +71,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public int insert(Ligue ligue) throws SauvegardeImpossible 
+	public int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		ResultSet id = null;
 		try (PreparedStatement instruction =

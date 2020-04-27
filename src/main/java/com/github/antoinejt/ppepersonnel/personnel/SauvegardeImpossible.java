@@ -1,4 +1,4 @@
-package personnel;
+package com.github.antoinejt.ppepersonnel.personnel;
 
 /**
  * Exception levée lorsqu'il est impossible de sauvegarder le gestionnaire.
