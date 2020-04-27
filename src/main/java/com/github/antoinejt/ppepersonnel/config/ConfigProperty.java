@@ -18,7 +18,7 @@ class ConfigProperty {
         this.value = toml.getString(property, defaultValue);
     }
 
-    ConfigProperty(String property, String defaultValue, Validator<String, InvalidConfigException> validator) {
+    ConfigProperty(String property, String defaultValue, Validator<String> validator) {
         this.value = toml.getString(property, defaultValue);
         try {
             validator.validate(value);
