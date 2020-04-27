@@ -52,7 +52,7 @@ public class LigueConsole
 
 	private Option ajouterLigue()
 	{
-		return new Option("Ajouter une ligue", "a", () -> 
+		return new Option("Ajouter une ligue", "a", () ->
 		{
 			try
 			{
@@ -124,7 +124,11 @@ public class LigueConsole
 	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
 		return new List<>("Changer l'administrateur", "c",
-				() -> new ArrayList<>(ligue.getEmployes()),
+				() -> {
+					java.util.List<Employe> list = new ArrayList<>(ligue.getEmployes());
+					list.add(gestionPersonnel.getRoot());
+					return list;
+				},
 				(index, element) -> ligue.setAdministrateur(element));
 	}
 
