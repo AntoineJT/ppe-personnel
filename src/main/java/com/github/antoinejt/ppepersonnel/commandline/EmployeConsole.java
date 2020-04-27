@@ -3,13 +3,13 @@ package com.github.antoinejt.ppepersonnel.commandline;
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
 
+import com.github.antoinejt.ppepersonnel.Utils;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import com.github.antoinejt.ppepersonnel.personnel.Employe;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EmployeConsole 
@@ -67,7 +67,7 @@ public class EmployeConsole
 		Date date = null;
 		do {
 			try {
-				date = new SimpleDateFormat("dd/MM/yyyy").parse(getString(String.format("Date %s au format JJ/MM/YYYY : ", type)));
+				date = Utils.dateFormatter.parse(getString(String.format("Date %s au format JJ/MM/YYYY : ", type)));
 			} catch (ParseException e) {
 				System.err.println("Date invalide !");
 			}

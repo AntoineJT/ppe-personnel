@@ -1,7 +1,8 @@
 package com.github.antoinejt.ppepersonnel.personnel;
 
+import com.github.antoinejt.ppepersonnel.Utils;
+
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -207,10 +208,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		String res = nom + " " + prenom + " " + mail + " (";
 		res += (estRoot() ? "super-utilisateur" : ligue.toString()) + ")";
-		// TODO Mettre l'instance de SDF utilisant ce pattern en tant que constante quelque part
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		if (arrivee != null) {
-			res += " " + formatter.format(arrivee) + " - " + ((depart != null) ? formatter.format(depart) : "?");
+			res += " " + Utils.dateFormatter.format(arrivee) + " - "
+					+ ((depart != null) ? Utils.dateFormatter.format(depart) : "?");
 		}
 		return res;
 	}

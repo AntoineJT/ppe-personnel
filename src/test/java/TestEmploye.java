@@ -1,11 +1,15 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.github.antoinejt.ppepersonnel.Utils;
 import org.junit.jupiter.api.Test;
 
 import com.github.antoinejt.ppepersonnel.personnel.Employe;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.ImpossibleDeSupprimerRoot;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
+
+import java.text.ParseException;
+import java.util.Date;
 
 class TestEmploye {
 	private Ligue createLigueTirArc() 
@@ -33,6 +37,7 @@ class TestEmploye {
 		Ligue ligue = createLigueTirArc();
 		Employe employe = createKarlo(ligue);
 		Ligue ligueEscrime = TestUtils.createLigue("Escrime");
+		assertNotNull(ligueEscrime);
 		
 		ligue.setAdministrateur(employe);
 		assertTrue(employe.estAdmin(ligue));
@@ -112,5 +117,37 @@ class TestEmploye {
 		
 		assertEquals(0, employe.compareTo(employe));
 		assertNotEquals(0, employe.compareTo(employe2));
+	}
+
+	@Test
+	void testDates()
+	{
+		// TODO test getter, setter + toString
+
+		Ligue ligue = createLigueTirArc();
+		Employe employe = createKarlo(ligue);
+
+		Date date = null;
+
+		try {
+			date = Utils.dateFormatter.parse("12/12/2003");
+		} catch (ParseException e) {
+			fail("La date spécifiée est invalide !");
+		}
+
+		employe.setDateArrivee(date);
+		assertEquals(employe.getDateArrivee(), date);
+
+		assertEquals(employe.toString(), "Karlo Jean-Eude jeaneude.karlo@karlo.com (Tir à l'arc) 12/12/2003 - ?");
+
+		employe.setDateDepart(date);
+		assertEquals(employe.getDateDepart(), date);
+
+		assertEquals(employe.toString(), "Karlo Jean-Eude jeaneude.karlo@karlo.com (Tir à l'arc) 12/12/2003 - 12/12/2003");
+
+		employe.setDateArrivee(null);
+		assertNull(employe.getDateArrivee());
+
+		assertEquals(employe.toString(), "Karlo Jean-Eude jeaneude.karlo@karlo.com (Tir à l'arc)");
 	}
 }
