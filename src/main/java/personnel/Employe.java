@@ -35,7 +35,7 @@ public class Employe implements Serializable, Comparable<Employe>
 
 	Employe(String nom, String prenom, String mail, String password, Ligue ligue)
 	{
-		new Employe(nom, prenom, mail, password, null, ligue);
+		this(nom, prenom, mail, password, null, ligue);
 	}
 	
 	/**
@@ -206,11 +206,11 @@ public class Employe implements Serializable, Comparable<Employe>
 	public String toString()
 	{
 		String res = nom + " " + prenom + " " + mail + " (";
-		res += estRoot() ? "super-utilisateur" : ligue.toString() + ") ";
+		res += (estRoot() ? "super-utilisateur" : ligue.toString()) + ")";
 		// TODO Mettre l'instance de SDF utilisant ce pattern en tant que constante quelque part
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		if (arrivee != null) {
-			res += formatter.format(arrivee) + " - " + ((depart != null) ? formatter.format(depart) : "?");
+			res += " " + formatter.format(arrivee) + " - " + ((depart != null) ? formatter.format(depart) : "?");
 		}
 		return res;
 	}

@@ -1,5 +1,3 @@
-package testsUnitaires;
-
 import personnel.GestionPersonnel;
 import personnel.Ligue;
 import personnel.SauvegardeImpossible;
