@@ -51,7 +51,7 @@ public class PersonnelConsole
 						gestionPersonnel.sauvegarder();
 						Action.QUIT.optionSelected();
 					} 
-					catch (SauvegardeImpossible e)
+					catch (SauvegardeImpossible unused)
 					{
 						System.out.println("Impossible d'effectuer la sauvegarde");
 					}
@@ -66,16 +66,15 @@ public class PersonnelConsole
 	
 	private boolean verifiePassword()
 	{
-		boolean ok = gestionPersonnel.getRoot().checkPassword(getString("password : "));
+		boolean ok = gestionPersonnel.getRoot().checkPassword(getString("Mot de passe : "));
 		if (!ok)
-			System.out.println("Password incorrect.");
+			System.out.println("Mot de passe incorrect.");
 		return ok;
 	}
 	
 	public static void main(String[] args)
 	{
-		PersonnelConsole personnelConsole =
-				new PersonnelConsole(GestionPersonnel.getGestionPersonnel());
+		PersonnelConsole personnelConsole = new PersonnelConsole(GestionPersonnel.getGestionPersonnel());
 		if (personnelConsole.verifiePassword())
 			personnelConsole.start();
 	}

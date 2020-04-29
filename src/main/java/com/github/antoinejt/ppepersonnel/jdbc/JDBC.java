@@ -22,7 +22,8 @@ public class JDBC implements Passerelle
 		try
 		{
 			Class.forName(Config.DB_DRIVER_CLASSNAME.toString());
-			connection = DriverManager.getConnection(getUrl(), Config.DB_USER.toString(), Config.DB_PASSWORD.toString());
+			connection = DriverManager.getConnection(getUrl(),
+					Config.DB_USER.toString(), Config.DB_PASSWORD.toString());
 		}
 		catch (ClassNotFoundException e)
 		{
@@ -42,9 +43,7 @@ public class JDBC implements Passerelle
 	public GestionPersonnel getGestionPersonnel()
 	{
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
-		try (
-			Statement instruction = connection.createStatement();
-			ResultSet ligues = instruction.executeQuery("SELECT * FROM ligue"))
+		try (ResultSet ligues = connection.createStatement().executeQuery("SELECT * FROM ligue"))
 		{
 			while (ligues.next())
 				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
@@ -79,9 +78,8 @@ public class JDBC implements Passerelle
 	public int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		ResultSet id = null;
-		try (PreparedStatement instruction =
-				 connection.prepareStatement("INSERT INTO ligue (nom) VALUES(?)",
-						 Statement.RETURN_GENERATED_KEYS))
+		try (PreparedStatement instruction = connection.prepareStatement(
+				"INSERT INTO ligue (nom) VALUES(?)", Statement.RETURN_GENERATED_KEYS))
 		{
 			instruction.setString(1, ligue.getNom());
 			instruction.executeUpdate();

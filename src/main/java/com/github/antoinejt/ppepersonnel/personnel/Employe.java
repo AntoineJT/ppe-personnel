@@ -184,33 +184,35 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void remove()
 	{
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
-		if (this != root)
-		{
-			if (estAdmin(getLigue()))
-				getLigue().setAdministrateur(root);
-			ligue.remove(this);
-		}
-		else
+		if (this == root) {
 			throw new ImpossibleDeSupprimerRoot();
+		}
+		if (estAdmin(ligue)) {
+			ligue.setAdministrateur(root);
+		}
+		ligue.remove(this);
 	}
 
 	@Override
 	public int compareTo(Employe autre)
 	{
 		int cmp = getNom().compareTo(autre.getNom());
-		if (cmp != 0)
-			return cmp;
-		return getPrenom().compareTo(autre.getPrenom());
+		return (cmp != 0)
+				? cmp
+				: getPrenom().compareTo(autre.getPrenom());
 	}
 	
 	@Override
 	public String toString()
 	{
-		String res = nom + " " + prenom + " " + mail + " (";
-		res += (estRoot() ? "super-utilisateur" : ligue.toString()) + ")";
+		String ligueStr = estRoot() ? "super-utilisateur" : ligue.toString();
+		String res = String.format("%s %s %s (%s)", nom, prenom, mail, ligueStr);
+
 		if (arrivee != null) {
-			res += " " + Utils.dateFormatter.format(arrivee) + " - "
-					+ ((depart != null) ? Utils.dateFormatter.format(depart) : "?");
+			String arriveeStr = Utils.dateFormatter.format(arrivee);
+			String departStr = (depart != null) ? Utils.dateFormatter.format(depart) : "?";
+
+			res += String.format(" %s - %s", arriveeStr, departStr);
 		}
 		return res;
 	}

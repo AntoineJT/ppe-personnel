@@ -19,24 +19,22 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	private String nom;
 	private SortedSet<Employe> employes;
 	private Employe administrateur;
-	private GestionPersonnel gestionPersonnel;
 	
 	/**
 	 * Crée une ligue.
 	 * @param nom le nom de la ligue.
 	 */
-	Ligue(GestionPersonnel gestionPersonnel, String nom) throws SauvegardeImpossible
+	Ligue(String nom) throws SauvegardeImpossible
 	{
-		this(gestionPersonnel, -1, nom);
-		this.id = gestionPersonnel.insert(this); 
+		this(-1, nom);
+		this.id = GestionPersonnel.getGestionPersonnel().insert(this);
 	}
 
-	Ligue(GestionPersonnel gestionPersonnel, int id, String nom)
+	Ligue(int id, String nom)
 	{
 		this.nom = nom;
 		employes = new TreeSet<>();
-		this.gestionPersonnel = gestionPersonnel;
-		administrateur = gestionPersonnel.getRoot();
+		administrateur = GestionPersonnel.getGestionPersonnel().getRoot();
 		this.id = id;
 	}
 
@@ -124,7 +122,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	@Override
 	public int compareTo(Ligue autre)
 	{
-		return getNom().compareTo(autre.getNom());
+		return nom.compareTo(autre.nom);
 	}
 	
 	@Override

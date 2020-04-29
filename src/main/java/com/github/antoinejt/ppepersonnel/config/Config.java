@@ -55,9 +55,7 @@ public enum Config {
                     }
                     return true;
                 },
-                () -> {
-                    exit("Le driver spécifié n'existe pas dans le classpath !", 2000);
-                }
+                () -> exit("Le driver spécifié n'existe pas dans le classpath !", 2000)
         );
     }
 

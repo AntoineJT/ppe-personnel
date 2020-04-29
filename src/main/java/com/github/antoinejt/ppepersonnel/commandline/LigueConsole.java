@@ -79,8 +79,7 @@ public class LigueConsole
 
 	private Option changerNom(final Ligue ligue)
 	{
-		return new Option("Renommer", "r", 
-				() -> ligue.setNom(getString("Nouveau nom : ")));
+		return new Option("Renommer", "r", () -> ligue.setNom(getString("Nouveau nom : ")));
 	}
 
 	private List<Ligue> selectionnerLigue()
@@ -102,10 +101,10 @@ public class LigueConsole
 	{
 		return new Option("Ajouter un employé", "a",
 				() ->
-					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "),
-						getString("mail : "),
-						getString("password : "))
+					ligue.addEmploye(getString("Nom : "),
+						getString("Prénom : "),
+						getString("Mail : "),
+						getString("Mot de passe : "))
 		);
 	}
 	

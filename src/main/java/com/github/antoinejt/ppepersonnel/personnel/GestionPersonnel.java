@@ -21,12 +21,13 @@ import java.util.TreeSet;
 public class GestionPersonnel implements Serializable
 {
 	private static final long serialVersionUID = -105283113987886425L;
+	private static final Passerelle passerelle = Config.TYPE_PASSERELLE.toString().equals("JDBC")
+			? new JDBC() : new Serialization();
 	private static GestionPersonnel gestionPersonnel = null;
+
 	private SortedSet<Ligue> ligues;
 	private Employe root = new Employe("root", "", "", "toor", null);
 
-	private static Passerelle passerelle = Config.TYPE_PASSERELLE.toString().equals("JDBC") ? new JDBC() : new Serialization();
-	
 	/**
 	 * Retourne l'unique instance de cette classe.
 	 * Crée cet objet s'il n'existe déjà.
@@ -35,11 +36,11 @@ public class GestionPersonnel implements Serializable
 	
 	public static GestionPersonnel getGestionPersonnel()
 	{
-		if (gestionPersonnel == null)
-		{
+		if (gestionPersonnel == null) {
 			gestionPersonnel = passerelle.getGestionPersonnel();
-			if (gestionPersonnel == null)
-				gestionPersonnel = new GestionPersonnel();
+		}
+		if (gestionPersonnel == null) {
+			gestionPersonnel = new GestionPersonnel();
 		}
 		return gestionPersonnel;
 	}
@@ -47,7 +48,7 @@ public class GestionPersonnel implements Serializable
 	public GestionPersonnel()
 	{
 		if (gestionPersonnel != null)
-			throw new RuntimeException("Vous ne pouvez créer qu'une seuls instance de cet objet.");
+			throw new IllegalStateException("Vous ne pouvez créer qu'une seule instance de GestionPersonnel.");
 		ligues = new TreeSet<>();
 	}
 	
@@ -65,10 +66,9 @@ public class GestionPersonnel implements Serializable
 	
 	public Ligue getLigue(Employe administrateur)
 	{
-		if (administrateur.estAdmin(administrateur.getLigue()))
-			return administrateur.getLigue();
-		else
-			return null;
+		return administrateur.estAdmin(administrateur.getLigue())
+				? administrateur.getLigue()
+				: null;
 	}
 
 	/**
@@ -83,14 +83,14 @@ public class GestionPersonnel implements Serializable
 
 	public Ligue addLigue(String nom) throws SauvegardeImpossible
 	{
-		Ligue ligue = new Ligue(this, nom); 
+		Ligue ligue = new Ligue(nom);
 		ligues.add(ligue);
 		return ligue;
 	}
 	
 	public Ligue addLigue(int id, String nom)
 	{
-		Ligue ligue = new Ligue(this, id, nom);
+		Ligue ligue = new Ligue(id, nom);
 		ligues.add(ligue);
 		return ligue;
 	}
