@@ -18,8 +18,7 @@ import java.util.TreeSet;
  * d'une exécution précédente, c'est l'objet sauvegardé qui est
  * retourné.
  */
-public class GestionPersonnel implements Serializable
-{
+public class GestionPersonnel implements Serializable {
 	private static final long serialVersionUID = -105283113987886425L;
 	private static final Passerelle passerelle = Config.TYPE_PASSERELLE.toString().equals("JDBC")
 			? new JDBC() : new Serialization();
@@ -33,9 +32,7 @@ public class GestionPersonnel implements Serializable
 	 * Crée cet objet s'il n'existe déjà.
 	 * @return l'unique objet de type {@link GestionPersonnel}.
 	 */
-	
-	public static GestionPersonnel getGestionPersonnel()
-	{
+	public static GestionPersonnel getGestionPersonnel() {
 		if (gestionPersonnel == null) {
 			gestionPersonnel = passerelle.getGestionPersonnel();
 		}
@@ -45,15 +42,13 @@ public class GestionPersonnel implements Serializable
 		return gestionPersonnel;
 	}
 
-	public GestionPersonnel()
-	{
+	public GestionPersonnel() {
 		if (gestionPersonnel != null)
 			throw new IllegalStateException("Vous ne pouvez créer qu'une seule instance de GestionPersonnel.");
 		ligues = new TreeSet<>();
 	}
 	
-	public void sauvegarder() throws SauvegardeImpossible
-	{
+	public void sauvegarder() throws SauvegardeImpossible {
 		passerelle.sauvegarderGestionPersonnel(this);
 	}
 	
@@ -63,9 +58,7 @@ public class GestionPersonnel implements Serializable
 	 * @param administrateur l'administrateur de la ligue recherchée.
 	 * @return la ligue dont administrateur est l'administrateur.
 	 */
-	
-	public Ligue getLigue(Employe administrateur)
-	{
+	public Ligue getLigue(Employe administrateur) {
 		return administrateur.estAdmin(administrateur.getLigue())
 				? administrateur.getLigue()
 				: null;
@@ -76,32 +69,27 @@ public class GestionPersonnel implements Serializable
 	 * @return toutes les ligues enregistrées.
 	 */
 	
-	public SortedSet<Ligue> getLigues()
-	{
+	public SortedSet<Ligue> getLigues() {
 		return Collections.unmodifiableSortedSet(ligues);
 	}
 
-	public Ligue addLigue(String nom) throws SauvegardeImpossible
-	{
+	public Ligue addLigue(String nom) throws SauvegardeImpossible {
 		Ligue ligue = new Ligue(nom);
 		ligues.add(ligue);
 		return ligue;
 	}
 	
-	public Ligue addLigue(int id, String nom)
-	{
+	public Ligue addLigue(int id, String nom) {
 		Ligue ligue = new Ligue(id, nom);
 		ligues.add(ligue);
 		return ligue;
 	}
 
-	void remove(Ligue ligue)
-	{
+	void remove(Ligue ligue) {
 		ligues.remove(ligue);
 	}
 	
-	int insert(Ligue ligue) throws SauvegardeImpossible
-	{
+	int insert(Ligue ligue) throws SauvegardeImpossible {
 		return passerelle.insert(ligue);
 	}
 
@@ -109,8 +97,7 @@ public class GestionPersonnel implements Serializable
 	 * Retourne le root (super-utilisateur).
 	 * @return le root.
 	 */
-	public Employe getRoot()
-	{
+	public Employe getRoot() {
 		return root;
 	}
 }

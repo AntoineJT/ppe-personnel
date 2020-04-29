@@ -12,19 +12,16 @@ import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 
-public class LigueConsole 
-{
+public class LigueConsole {
 	private GestionPersonnel gestionPersonnel;
 	private EmployeConsole employeConsole;
 
-	public LigueConsole(GestionPersonnel gestionPersonnel, EmployeConsole employeConsole)
-	{
+	public LigueConsole(GestionPersonnel gestionPersonnel, EmployeConsole employeConsole) {
 		this.gestionPersonnel = gestionPersonnel;
 		this.employeConsole = employeConsole;
 	}
 
-	Menu menuLigues()
-	{
+	Menu menuLigues() {
 		Menu menu = new Menu("Gérer les ligues", "l");
 		menu.add(afficherLigues());
 		menu.add(ajouterLigue());
@@ -33,40 +30,32 @@ public class LigueConsole
 		return menu;
 	}
 
-	private Option afficherLigues()
-	{
+	private Option afficherLigues() {
 		return new Option("Afficher les ligues", "l", () -> System.out.println(gestionPersonnel.getLigues()));
 	}
 
-	private Option afficher(final Ligue ligue)
-	{
+	private Option afficher(final Ligue ligue) {
 		return new Option("Afficher la ligue", "l", () -> System.out.println(
 				ligue + "\n" +
 				"administrée par " + ligue.getAdministrateur())
 		);
 	}
-	private Option afficherEmployes(final Ligue ligue)
-	{
+
+	private Option afficherEmployes(final Ligue ligue) {
 		return new Option("Afficher les employes", "l", () -> System.out.println(ligue.getEmployes()));
 	}
 
-	private Option ajouterLigue()
-	{
-		return new Option("Ajouter une ligue", "a", () ->
-		{
-			try
-			{
+	private Option ajouterLigue() {
+		return new Option("Ajouter une ligue", "a", () -> {
+			try {
 				gestionPersonnel.addLigue(getString("nom : "));
-			}
-			catch(SauvegardeImpossible exception)
-			{
+			} catch(SauvegardeImpossible exception) {
 				System.err.println("Impossible de sauvegarder cette ligue");
 			}
 		});
 	}
-	
-	private Menu editerLigue(Ligue ligue)
-	{
+
+	private Menu editerLigue(Ligue ligue) {
 		Menu menu = new Menu("Editer " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
@@ -77,39 +66,34 @@ public class LigueConsole
 		return menu;
 	}
 
-	private Option changerNom(final Ligue ligue)
-	{
+	private Option changerNom(final Ligue ligue) {
 		return new Option("Renommer", "r", () -> ligue.setNom(getString("Nouveau nom : ")));
 	}
 
-	private List<Ligue> selectionnerLigue()
-	{
+	private List<Ligue> selectionnerLigue() {
 		return new List<>("Sélectionner une ligue", "e",
 				() -> new ArrayList<>(gestionPersonnel.getLigues()),
 				this::editerLigue
 		);
 	}
 
-	private List<Employe> selectionnerEmploye(final Ligue ligue)
-	{
+	private List<Employe> selectionnerEmploye(final Ligue ligue) {
 		return new List<>("Sélectionner un employé", "e",
 				() -> new ArrayList<>(ligue.getEmployes()),
-				employeConsole.editerEmploye());
+				employeConsole.editerEmploye()
+		);
 	}
-	
-	private Option ajouterEmploye(final Ligue ligue)
-	{
+
+	private Option ajouterEmploye(final Ligue ligue) {
 		return new Option("Ajouter un employé", "a",
-				() ->
-					ligue.addEmploye(getString("Nom : "),
+				() -> ligue.addEmploye(getString("Nom : "),
 						getString("Prénom : "),
 						getString("Mail : "),
 						getString("Mot de passe : "))
 		);
 	}
-	
-	private Menu gererEmployes(Ligue ligue)
-	{
+
+	private Menu gererEmployes(Ligue ligue) {
 		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
@@ -118,19 +102,18 @@ public class LigueConsole
 		return menu;
 	}
 
-	private List<Employe> changerAdministrateur(final Ligue ligue)
-	{
+	private List<Employe> changerAdministrateur(final Ligue ligue) {
 		return new List<>("Changer l'administrateur", "c",
 				() -> {
 					java.util.List<Employe> list = new ArrayList<>(ligue.getEmployes());
 					list.add(gestionPersonnel.getRoot());
 					return list;
 				},
-				(index, element) -> ligue.setAdministrateur(element));
+				(index, element) -> ligue.setAdministrateur(element)
+		);
 	}
-	
-	private Option supprimer(Ligue ligue)
-	{
+
+	private Option supprimer(Ligue ligue) {
 		return new Option("Supprimer", "d", ligue::remove);
 	}
 }

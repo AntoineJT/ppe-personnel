@@ -11,19 +11,14 @@ import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
 import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 
-public class Serialization implements Passerelle
-{
+public class Serialization implements Passerelle {
 	private static final String FILE_NAME = "GestionPersonnel.srz";
 
 	@Override
-	public GestionPersonnel getGestionPersonnel()
-	{
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME)))
-		{
+	public GestionPersonnel getGestionPersonnel() {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
 			return (GestionPersonnel) ois.readObject();
-		}
-		catch (IOException | ClassNotFoundException e)
-		{
+		} catch (IOException | ClassNotFoundException e) {
 			return null;
 		}
 	}
@@ -34,21 +29,16 @@ public class Serialization implements Passerelle
 	 * @throws SauvegardeImpossible Si le support de sauvegarde est inaccessible.
 	 */
 	@Override
-	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel) throws SauvegardeImpossible
-	{
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME)))
-		{
+	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel) throws SauvegardeImpossible {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
 			oos.writeObject(gestionPersonnel);
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			throw new SauvegardeImpossible(e);
 		}
 	}
 	
 	@Override
-	public int insert(Ligue ligue) throws SauvegardeImpossible
-	{
+	public int insert(Ligue ligue) throws SauvegardeImpossible {
 		return -1;
 	}
 }
