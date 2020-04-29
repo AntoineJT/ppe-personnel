@@ -5,11 +5,11 @@ package com.github.antoinejt.ppepersonnel.personnel;
  */
 public class SauvegardeImpossible extends Exception {
 	private final Exception exception;
-	
+
 	public SauvegardeImpossible(Exception exception) {
 		this.exception = exception;
 	}
-	
+
 	@Override
 	public void printStackTrace() {
 		super.printStackTrace();

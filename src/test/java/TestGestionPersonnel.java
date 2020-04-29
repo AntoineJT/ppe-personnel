@@ -1,23 +1,21 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
-
 import com.github.antoinejt.ppepersonnel.personnel.Employe;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class TestGestionPersonnel {
-    private static GestionPersonnel personnel = TestUtils.personnel;
-    
+	private static GestionPersonnel personnel = TestUtils.personnel;
+
 	@Test
-	void testGetLigue()
-	{
+	void testGetLigue() {
 		Ligue ligue = TestUtils.createLigue("Batteur de saumon en Alaska");
 		Employe employe = ligue.addEmploye("Grolask", "Jean-Charles", "jc.grolask@alaska.us", "jellybelly");
-		
+
 		assertNull(personnel.getLigue(employe));
-		
+
 		ligue.setAdministrateur(employe);
 		assertEquals(ligue, personnel.getLigue(employe));
 	}

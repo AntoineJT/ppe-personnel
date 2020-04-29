@@ -1,17 +1,17 @@
 package com.github.antoinejt.ppepersonnel.jdbc;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.github.antoinejt.ppepersonnel.config.Config;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
 import com.github.antoinejt.ppepersonnel.personnel.Passerelle;
 import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class JDBC implements Passerelle {
 	Connection connection;
@@ -31,7 +31,7 @@ public class JDBC implements Passerelle {
 	private static String getUrl() {
 		return String.format("jdbc:%s://%s:%s/%s", Config.DB_DRIVER, Config.DB_HOST, Config.DB_PORT, Config.DB_NAME);
 	}
-	
+
 	@Override
 	public GestionPersonnel getGestionPersonnel() {
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
@@ -49,7 +49,7 @@ public class JDBC implements Passerelle {
 	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel) throws SauvegardeImpossible {
 		close();
 	}
-	
+
 	public void close() throws SauvegardeImpossible {
 		try {
 			if (connection != null) {
@@ -59,7 +59,7 @@ public class JDBC implements Passerelle {
 			throw new SauvegardeImpossible(e);
 		}
 	}
-	
+
 	@Override
 	public int insert(Ligue ligue) throws SauvegardeImpossible {
 		ResultSet id = null;

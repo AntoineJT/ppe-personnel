@@ -1,9 +1,5 @@
 package com.github.antoinejt.ppepersonnel.commandline;
 
-import static commandLineMenus.rendering.examples.util.InOut.getString;
-
-import java.util.ArrayList;
-
 import com.github.antoinejt.ppepersonnel.personnel.Employe;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
@@ -11,6 +7,10 @@ import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
+
+import java.util.ArrayList;
+
+import static commandLineMenus.rendering.examples.util.InOut.getString;
 
 public class LigueConsole {
 	private GestionPersonnel gestionPersonnel;
@@ -37,7 +37,7 @@ public class LigueConsole {
 	private Option afficher(final Ligue ligue) {
 		return new Option("Afficher la ligue", "l", () -> System.out.println(
 				ligue + "\n" +
-				"administrée par " + ligue.getAdministrateur())
+						"administrée par " + ligue.getAdministrateur())
 		);
 	}
 
@@ -49,7 +49,7 @@ public class LigueConsole {
 		return new Option("Ajouter une ligue", "a", () -> {
 			try {
 				gestionPersonnel.addLigue(getString("nom : "));
-			} catch(SauvegardeImpossible exception) {
+			} catch (SauvegardeImpossible exception) {
 				System.err.println("Impossible de sauvegarder cette ligue");
 			}
 		});

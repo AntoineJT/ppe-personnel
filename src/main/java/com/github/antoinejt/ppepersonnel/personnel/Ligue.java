@@ -21,6 +21,7 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 
 	/**
 	 * Crée une ligue.
+	 *
 	 * @param nom le nom de la ligue.
 	 */
 	Ligue(String nom) throws SauvegardeImpossible {
@@ -37,6 +38,7 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 
 	/**
 	 * Retourne le nom de la ligue.
+	 *
 	 * @return le nom de la ligue.
 	 */
 	public String getNom() {
@@ -45,6 +47,7 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 
 	/**
 	 * Change le nom.
+	 *
 	 * @param nom le nouveau nom de la ligue.
 	 */
 	public void setNom(String nom) {
@@ -53,6 +56,7 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 
 	/**
 	 * Retourne l'administrateur de la ligue.
+	 *
 	 * @return l'administrateur de la ligue.
 	 */
 	public Employe getAdministrateur() {
@@ -64,6 +68,7 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 	 * Lève DroitsInsuffisants si l'administrateur n'est pas
 	 * un employé de la ligue ou le root. Révoque les droits de l'ancien
 	 * administrateur.
+	 *
 	 * @param administrateur le nouvel administrateur de la ligue.
 	 */
 	public void setAdministrateur(Employe administrateur) {
@@ -75,6 +80,7 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 
 	/**
 	 * Retourne les employés de la ligue.
+	 *
 	 * @return les employés de la ligue dans l'ordre alphabétique.
 	 */
 	public SortedSet<Employe> getEmployes() {
@@ -84,9 +90,10 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 	/**
 	 * Ajoute un employé dans la ligue. Cette méthode
 	 * est le seul moyen de créer un employé.
-	 * @param nom le nom de l'employé.
-	 * @param prenom le prénom de l'employé.
-	 * @param mail l'adresse mail de l'employé.
+	 *
+	 * @param nom      le nom de l'employé.
+	 * @param prenom   le prénom de l'employé.
+	 * @param mail     l'adresse mail de l'employé.
 	 * @param password le password de l'employé.
 	 * @return l'employé créé.
 	 */

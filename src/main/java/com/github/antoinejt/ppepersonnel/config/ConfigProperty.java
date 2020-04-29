@@ -11,49 +11,50 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 class ConfigProperty {
-    private static Toml toml = null;
-    private final String value;
+	private static Toml toml = null;
 
-    ConfigProperty(String property, String defaultValue) {
-        this.value = toml.getString(property, defaultValue);
-    }
+	static {
+		File cfgFile = new File("config.toml");
+		if (!cfgFile.exists()) {
+			try {
+				assert cfgFile.createNewFile();
+				extractFileFromInside("/config.toml", cfgFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		toml = new Toml().read(cfgFile);
+	}
 
-    ConfigProperty(String property, String defaultValue, Validator<String> validator) {
-        this.value = toml.getString(property, defaultValue);
-        try {
-            validator.validate(value);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	private final String value;
 
-    @Override
-    public String toString() {
-        return value;
-    }
+	ConfigProperty(String property, String defaultValue) {
+		this.value = toml.getString(property, defaultValue);
+	}
 
-    static {
-        File cfgFile = new File("config.toml");
-        if (!cfgFile.exists()) {
-            try {
-                assert cfgFile.createNewFile();
-                extractFileFromInside("/config.toml", cfgFile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        toml = new Toml().read(cfgFile);
-    }
+	ConfigProperty(String property, String defaultValue, Validator<String> validator) {
+		this.value = toml.getString(property, defaultValue);
+		try {
+			validator.validate(value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    private static void extractFileFromInside(String insidePath, File file) throws IOException {
-        String content = "";
+	private static void extractFileFromInside(String insidePath, File file) throws IOException {
+		String content = "";
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Config.class.getResourceAsStream(insidePath)))) {
-            content = reader.lines().collect(Collectors.joining("\n"));
-        }
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(Config.class.getResourceAsStream(insidePath)))) {
+			content = reader.lines().collect(Collectors.joining("\n"));
+		}
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(content);
-        }
-    }
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+			writer.write(content);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return value;
+	}
 }
