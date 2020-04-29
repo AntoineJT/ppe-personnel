@@ -6,7 +6,6 @@ package com.github.antoinejt.ppepersonnel.personnel;
 
 public class SauvegardeImpossible extends Exception
 {
-	private static final long serialVersionUID = 6651919630441855001L;	
 	private final Exception exception;
 	
 	public SauvegardeImpossible(Exception exception)
