@@ -1,9 +1,9 @@
-package com.github.antoinejt.ppepersonnel.jdbc;
+package com.github.antoinejt.ppepersonnel.storage;
 
 import com.github.antoinejt.ppepersonnel.config.Config;
 import com.github.antoinejt.ppepersonnel.personnel.GestionPersonnel;
 import com.github.antoinejt.ppepersonnel.personnel.Ligue;
-import com.github.antoinejt.ppepersonnel.personnel.Passerelle;
+import com.github.antoinejt.ppepersonnel.storage.Passerelle;
 import com.github.antoinejt.ppepersonnel.personnel.SauvegardeImpossible;
 
 import java.sql.Connection;

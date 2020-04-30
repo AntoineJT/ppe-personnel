@@ -1,8 +1,9 @@
 package com.github.antoinejt.ppepersonnel.personnel;
 
 import com.github.antoinejt.ppepersonnel.config.Config;
-import com.github.antoinejt.ppepersonnel.jdbc.JDBC;
-import com.github.antoinejt.ppepersonnel.serialisation.Serialization;
+import com.github.antoinejt.ppepersonnel.storage.JDBC;
+import com.github.antoinejt.ppepersonnel.storage.Passerelle;
+import com.github.antoinejt.ppepersonnel.storage.Serialization;
 
 import java.io.Serializable;
 import java.util.Collections;
