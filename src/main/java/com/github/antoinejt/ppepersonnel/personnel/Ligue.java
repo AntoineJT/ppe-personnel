@@ -14,9 +14,11 @@ import java.util.TreeSet;
  */
 public class Ligue implements Serializable, Comparable<Ligue> {
 	private static final long serialVersionUID = 1L;
-	private int id = -1;
+
+	private final int id;
+	private final SortedSet<Employe> employes = new TreeSet<>();
+
 	private String nom;
-	private SortedSet<Employe> employes;
 	private Employe administrateur;
 
 	/**
@@ -25,15 +27,19 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 	 * @param nom le nom de la ligue.
 	 */
 	Ligue(String nom) throws SauvegardeImpossible {
-		this(-1, nom);
+		construct(nom);
 		this.id = GestionPersonnel.getGestionPersonnel().insert(this);
 	}
 
 	Ligue(int id, String nom) {
-		this.nom = nom;
-		employes = new TreeSet<>();
-		administrateur = GestionPersonnel.getGestionPersonnel().getRoot();
+		construct(nom);
 		this.id = id;
+	}
+
+	// this is a little workaround
+	private void construct(String nom) {
+		this.nom = nom;
+		administrateur = GestionPersonnel.getGestionPersonnel().getRoot();
 	}
 
 	/**
@@ -55,6 +61,15 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 	}
 
 	/**
+	 * Retourne l'id de la ligue.
+	 *
+	 * @return l'id de la ligue.
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
 	 * Retourne l'administrateur de la ligue.
 	 *
 	 * @return l'administrateur de la ligue.
@@ -73,8 +88,9 @@ public class Ligue implements Serializable, Comparable<Ligue> {
 	 */
 	public void setAdministrateur(Employe administrateur) {
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
-		if (administrateur != root && administrateur.getLigue() != this)
+		if (administrateur != root && administrateur.getLigue() != this) {
 			throw new DroitsInsuffisants();
+		}
 		this.administrateur = administrateur;
 	}
 

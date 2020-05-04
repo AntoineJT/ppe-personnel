@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 class ConfigProperty {
-	private static Toml toml = null;
+	private static Toml toml;
 
 	static {
 		File cfgFile = new File("config.toml");
