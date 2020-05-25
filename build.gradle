@@ -6,6 +6,8 @@ plugins {
 group 'com.github.antoinejt'
 sourceCompatibility = 1.8
 
+def name = 'ppe-personnel'
+
 repositories {
     mavenCentral()
 	maven {
@@ -20,7 +22,7 @@ jar {
 }
 
 shadowJar {
-	archiveBaseName = rootProject.name
+	archiveBaseName = name
 }
 
 dependencies {
@@ -36,7 +38,7 @@ test {
 }
 
 task removeUselessJar(type: Delete) {
-	delete "build/libs/${rootProject.name}.jar"
+	delete "build/libs/${name}.jar"
 }
 
 build.dependsOn 'shadowJar'
