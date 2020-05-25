@@ -41,5 +41,18 @@ task removeUselessJar(type: Delete) {
 	delete "build/libs/${name}.jar"
 }
 
+task createBatchFile() {
+	new File('build/libs', 'run.bat').text = """
+chcp 65001
+java -jar ppe-personnel-all.jar
+"""
+	new File('build/libs', 'run.sh').text = "java -jar ppe-personnel-all.jar"
+}
+
+task runFinalTasks() {
+	dependsOn 'removeUselessJar'
+	dependsOn 'createBatchFile'
+}
+
 build.dependsOn 'shadowJar'
-build.finalizedBy removeUselessJar
+build.finalizedBy runFinalTasks
