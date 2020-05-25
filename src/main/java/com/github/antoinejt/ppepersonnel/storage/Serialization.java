@@ -41,4 +41,9 @@ public class Serialization implements Passerelle {
 	public int insert(Ligue ligue) throws SauvegardeImpossible {
 		return -1;
 	}
+
+	@Override
+	public void remove(Ligue ligue) throws SauvegardeImpossible {
+		// does nothing
+	}
 }

@@ -1,4 +1,5 @@
 GestionPersonnel.srz
+/config.toml
 
 # Looping backup files
 *.bak

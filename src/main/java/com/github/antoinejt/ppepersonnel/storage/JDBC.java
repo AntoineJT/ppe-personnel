@@ -82,4 +82,16 @@ public class JDBC implements Passerelle {
 			}
 		}
 	}
+
+	@Override
+	public void remove(Ligue ligue) throws SauvegardeImpossible {
+		try(PreparedStatement statement = connection.prepareStatement("DELETE FROM LIGUE WHERE nom = ?", ligue.getId())) {
+			if (!statement.execute()) {
+				throw new SQLException("Query failed!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
+	}
 }
