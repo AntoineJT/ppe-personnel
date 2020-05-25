@@ -1,10 +1,12 @@
 plugins {
 	id 'java'
+	id 'application'
 	id 'com.github.johnrengelman.shadow' version '5.2.0'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
 group 'com.github.antoinejt'
-sourceCompatibility = 1.8
+sourceCompatibility = 13
 
 def name = 'ppe-personnel'
 
@@ -29,6 +31,7 @@ dependencies {
 	implementation 'com.github.antoinejt:commandline:jitpack-SNAPSHOT'
 	implementation 'mysql:mysql-connector-java:8.0.19'
 	implementation 'com.moandjiezana.toml:toml4j:0.7.2'
+	implementation files('deps/libs/javafx.base.jar')
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
 }
@@ -49,9 +52,15 @@ java -jar ppe-personnel-all.jar
 	new File('build/libs', 'run.sh').text = "java -jar ppe-personnel-all.jar"
 }
 
+task copyBins(type: Copy) {
+	from 'deps/bins'
+	into 'build/libs'
+}
+
 task runFinalTasks() {
 	dependsOn 'removeUselessJar'
 	dependsOn 'createBatchFile'
+	dependsOn 'copyBins'
 }
 
 build.dependsOn 'shadowJar'
